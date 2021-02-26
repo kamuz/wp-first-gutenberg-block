@@ -1,6 +1,8 @@
-( function( blocks, element ) {
-    const registerBlockType = blocks.registerBlockType;
-    const createElement = element.createElement;
+( function( blocks, editor, element ) {
+
+    const { registerBlockType } = blocks;
+    const { createElement } = element;
+    const { RichText } = editor;
 
     const iconEmail = createElement('svg', { width: 20, height: 20 },
         createElement( 'path',
@@ -9,17 +11,40 @@
             }
         )
     );
+
     registerBlockType( 'kmz/newsletter', {
         title: 'Newsletter',
         icon: iconEmail,
         category: 'widgets',
         keywords: [ 'email', 'subscribe', 'kmz' ],
+
+        attributes: {
+            content: {
+                type: 'array',
+                source: 'children',
+                selector: 'p'
+            },
+        },
         edit: function( props ) {
+            function onChangeContent( newContent ) {
+                props.setAttributes( { content: newContent } );
+            }
             return (
                 createElement( 'div', { className: props.className },
-                    createElement( 'div', { className: 'kmz-block-form-wrap' },
+                    createElement(
+                        RichText,
+                        {
+                            tagName: 'p',
+                            format: 'string',
+                            className: 'kmz-subscription-block-title',
+                            onChange: onChangeContent,
+                            value: props.attributes.content,
+                            allowedFormats: [ 'core/bold', 'core/italic' ]
+                        }
+                    ),
+                    createElement( 'div', { className: 'kmz-subscription-block-form-wrap' },
                         createElement( 'div', {},
-                            'Enter your email address'
+                            'Enter your email...'
                         ),
                         createElement( 'div', {},
                             'Subscribe'
@@ -31,7 +56,12 @@
         save: function( props ) {
             return (
                 createElement( 'div', { className: props.className },
-                    createElement( 'form', { className: 'kmz-block-form-wrap' },
+                    createElement( RichText.Content, {
+                        tagName: 'p',
+                        className: 'kmz-subscription-block-title',
+                        value: props.attributes.content
+                    } ),
+                    createElement( 'form', { className: 'kmz-subscription-block-form-wrap' },
                         createElement( 'input', { 'type': 'email', 'placeholder' : 'Enter your email address' } ),
                         createElement( 'button', {}, 'Subscribe' )
                     )
@@ -39,4 +69,4 @@
             );
         },
     } );
-} )( window.wp.blocks, window.wp.element );
+} )( window.wp.blocks, window.wp.blockEditor, window.wp.element );

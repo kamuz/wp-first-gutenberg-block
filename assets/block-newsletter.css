@@ -1,9 +1,9 @@
 .wp-block-kmz-newsletter {
     background: #ffde00;
-    padding: 40px 20px;
+    padding: 20px 20px 40px;
     color: #494633;
 }
-.kmz-block-form-wrap {
+.kmz-subscription-block-form-wrap {
     border: 2px solid #494633;
     display: flex;
     justify-content: space-between;
@@ -12,13 +12,17 @@
     margin-right: auto;
     font-size: 18px;
 }
-.kmz-block-form-wrap div:first-child {
+.kmz-subscription-block-form-wrap div:first-child {
     padding: 8px 16px;
     width: 100%;
 }
-.kmz-block-form-wrap div:last-child {
+.kmz-subscription-block-form-wrap div:last-child {
     background-color: #494836;
     color: #ffde00;
     padding: 8px 20px;
     font-weight: bold;
+}
+.kmz-subscription-block-title {
+    margin-bottom: 20px;
+    text-align: center;
 }

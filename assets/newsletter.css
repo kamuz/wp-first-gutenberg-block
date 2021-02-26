@@ -1,8 +1,12 @@
 .wp-block-kmz-newsletter {
     background: #ffde00;
-    padding: 40px 20px;
+    padding: 20px 20px 40px;
 }
-.kmz-block-form-wrap {
+.kmz-subscription-block-title {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.kmz-subscription-block-form-wrap {
     border: 2px solid #494633;
     display: flex;
     justify-content: space-between;
@@ -11,14 +15,14 @@
     margin-right: auto;
     font-size: 18px;
 }
-.kmz-block-form-wrap input[type="email"] {
+.kmz-subscription-block-form-wrap input[type="email"] {
     padding: 8px 16px;
     border: 0;
     width: 100%;
     background: none;
     display: block;
 }
-.kmz-block-form-wrap button {
+.kmz-subscription-block-form-wrap button {
     background-color: #494836;
     color: #ffde00;
     padding: 8px 20px;
@@ -26,6 +30,6 @@
     display: block;
     border-radius: 0;
 }
-.kmz-block-form-wrap input::placeholder {
+.kmz-subscription-block-form-wrap input::placeholder {
     color: #494633;
 }
